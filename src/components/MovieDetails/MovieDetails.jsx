@@ -8,10 +8,13 @@ const MovieDetails = ({modalData}) => {
         <Box className={classes.style}>
             <img src={modalData.i.imageUrl} alt="moviePoster" className={classes.image}></img>
             <Typography variant="h4">
-              Movie: {modalData.l}
+              {modalData.l}
             </Typography>
             <Typography>
-                Release date: {modalData.y}
+                Year Released: {modalData.y}
+            </Typography>
+            <Typography>
+                Movie/TvSeries: {modalData.qid}
             </Typography>
             <Typography>
                 Featured Actors: {modalData.s}

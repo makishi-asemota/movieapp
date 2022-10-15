@@ -10,45 +10,47 @@ const App = () => {
   const [movie, setMovies] = useState([]);
   const [moviePopup, setmoviePopup] = useState(false);
   const [modalData, setModalData] = useState("");
-  const [searchValue, setSearchValue] = useState("cars");
+  const [searchValue, setSearchValue] = useState("");
+  const [fullSearchValue, setFullSearchValue] = useState("");
 
   const closeModal = () => {
     setmoviePopup(false);
   };
 
-  const getMovieData = () => {
+  const fetchData = () => {
     const options = {
       method: "GET",
-      url: "https://online-movie-database.p.rapidapi.com/auto-complete",
-      params: { q: { searchValue } },
       headers: {
         "X-RapidAPI-Key": "a947316714msh6764694cc039a95p1fb94bjsn4f6d955aaf2e",
         "X-RapidAPI-Host": "online-movie-database.p.rapidapi.com",
       },
     };
 
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data.d);
-        setMovies(response.data.d);
+    fetch(
+      `https://online-movie-database.p.rapidapi.com/auto-complete?q=+${searchValue}`,
+      options
+    )
+      .then((response) => {
+        return response.json();
       })
-      .catch(function (error) {
-        console.error(error);
-      });
+      .then((data) => {
+        console.log(data.d);
+        setMovies(data.d);
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    getMovieData(searchValue);
-  }, [searchValue]);
+    fetchData();
+  }, [fullSearchValue]);
 
   return (
     <>
       <CssBaseline />
       <Header
-        movie={movie}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
+        setFullSearchValue={setFullSearchValue}
       />
       <Grid
         container

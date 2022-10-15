@@ -3,10 +3,19 @@ import {AppBar, Toolbar, Typography, InputBase, Box} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search'
 import useStyles from './styles'
 
-const Header = (props) => {
+const Header = ({searchValue, setSearchValue, setFullSearchValue}) => {
     const classes = useStyles();
+    const handleSearchChange = (e) => {
+        setSearchValue(e.target.value)
+    }
+
+    const onSubmit = e => {
+        e.preventDefault();
+        setFullSearchValue(searchValue)
+    }
+
     return (
-        <AppBar position="static" style={{ background: "#ff9800", color: "#b23c17" }}>
+        <AppBar position="static" style={{ background: "darkgrey", color: "black" }}>
             <Toolbar className={classes.toolbar}>
                 <Typography variant="h5" className={classes.title}>
                     Search Favorite Movies and Actors!
@@ -19,8 +28,8 @@ const Header = (props) => {
                         <div className={classes.searchIcon}>
                             <SearchIcon/>
                         </div>
-                        <InputBase onChange={(e) => props.setSearchValue(e.target.value)} value={props.value} placeholder="Search... " classes={{root: classes.inputRoot, input: classes.inputInput}} />
-                        {/* <button type='submit' onClick={}>Search</button> */}
+                        <InputBase onChange={handleSearchChange} value={searchValue} placeholder="Search... " classes={{root: classes.inputRoot, input: classes.inputInput}} />
+                            <button type='submit' onClick={onSubmit} className={classes.button}>Search</button>
                     </div>
                 </Box>
             </Toolbar>

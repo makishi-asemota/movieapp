@@ -21,7 +21,7 @@ export default makeStyles(() => ({
   },
 
   image: {
-    height: "150px",
-    width: "125px",
+    height: "20em",
+    width: "15em",
   },
 }));
