@@ -5,10 +5,13 @@ import useStyles from './styles'
 
 const Header = ({searchValue, setSearchValue, setFullSearchValue}) => {
     const classes = useStyles();
+
+    //sets search value to letters entered in search box
     const handleSearchChange = (e) => {
         setSearchValue(e.target.value)
     }
 
+    //sets search value to whole word inputted in search box after button click
     const onSubmit = e => {
         e.preventDefault();
         setFullSearchValue(searchValue)
@@ -18,7 +21,7 @@ const Header = ({searchValue, setSearchValue, setFullSearchValue}) => {
         <AppBar position="static" style={{ background: "darkgrey", color: "black" }}>
             <Toolbar className={classes.toolbar}>
                 <Typography variant="h5" className={classes.title}>
-                    Search Favorite Movies and Actors!
+                    IMDB MovieApp
                 </Typography>
                 <Box display="flex">
                     <Typography variant="h6" className={classes.toolbar}>

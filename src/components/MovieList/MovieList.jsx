@@ -1,14 +1,21 @@
-import React, {useState} from "react";
+import React from "react";
 import useStyles from "../MovieList/styles"
 
 
-const MovieList = ({movie, setmoviePopup, setModalData}) => {
+const MovieList = ({movie, setmoviePopup, setModalData, favorites, setFavorites}) => {
     const classes = useStyles()
+
+    //function to open modal
     const openModal = () => {
         setmoviePopup(true);
       };
 
-    
+    //Add movies to favorites list upon button click
+    function addFavoriteMovie(movie)  {
+        const newFavoriteList = [...favorites, movie];
+        setFavorites(newFavoriteList)
+        console.log(favorites)
+    }
 
     return (
         <>
@@ -19,7 +26,11 @@ const MovieList = ({movie, setmoviePopup, setModalData}) => {
                     alt={movie.l}
                     ></img>
                     <h3>{movie.l}</h3>
-                    <button className={classes.button} onClick={() =>{openModal(); setModalData(movie)}}>More Info</button>
+                    <div>
+                        <button className={classes.button} onClick={() =>{openModal(); setModalData(movie)}}>More Info</button>
+                        <button className={classes.button} onClick={() => {addFavoriteMovie(movie)}}>Add to Favorites</button>
+                    </div>
+                    
             </div>
         </>
         

@@ -1,5 +1,5 @@
 import React from "react";
-import { CssBaseline, Grid, Modal, Box, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import useStyles from "../MovieDetails/styles"
 
 const MovieDetails = ({modalData}) => {
