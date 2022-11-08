@@ -66,7 +66,7 @@ const App = () => {
           movie.map((movie, idx) => (
             <Grid
               item
-              xs={4}
+              sm={4}
               md={4}
               key={idx}
               style={{
