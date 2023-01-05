@@ -2,6 +2,7 @@ import React from "react";
 import useStyles from "../MovieList/styles"
 
 
+
 const MovieList = ({movie, setmoviePopup, setModalData, favorites, setFavorites}) => {
     const classes = useStyles()
 
@@ -22,6 +23,10 @@ const MovieList = ({movie, setmoviePopup, setModalData, favorites, setFavorites}
             <div className={classes.movieContainer} style={{display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <img
                     src={movie.i.imageUrl}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src="./brokenError.png";
+                      }}
                     className={classes.moviePoster}
                     alt={movie.l}
                     ></img>
